@@ -16,8 +16,8 @@ log_level = logging.INFO
 
 # User Configurable Parameters
 # --------------------------------
-sender_command = "/usr/local/bin/zabbix_sender"
-config_path = "/etc/zabbix_agentd.conf"
+sender_command = "/usr/bin/zabbix_sender"
+config_path = "/etc/zabbix/zabbix_agentd.conf"
 sample_interval = 5    # in minutes, must be >= 5
 
 # Globals
