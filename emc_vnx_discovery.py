@@ -7,7 +7,7 @@ import argparse
 import logging
 import logging.handlers
 
-log_level = logging.INFO
+log_level = logging.CRITICAL
 
 
 def ecom_connect(ecom_ip, ecom_user, ecom_pass, default_namespace="/root/emc"):
