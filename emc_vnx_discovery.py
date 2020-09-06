@@ -394,7 +394,7 @@ def zabbix_safe_output(data):
     """ Generate JSON output for zabbix from a passed in list of dicts """
     logger = logging.getLogger('discovery')
     logger.info("Generating output")
-    output = json.dumps({"data": data}, indent=4, separators=(',', ': '))
+    output = '{"data":'+str(data).replace("'",'"')+'}'
 
     logger.debug(json.dumps({"data": data}))
 
