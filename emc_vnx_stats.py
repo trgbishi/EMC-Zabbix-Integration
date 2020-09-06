@@ -75,7 +75,7 @@ def get_array_instancename(ecom_conn, array_serial):
 
 def ecom_connect(ecom_ip, ecom_user, ecom_pass, default_namespace="/root/emc"):
     """ returns a connection to the ecom server """
-    ecom_url = "https://%s:5989" % ecom_ip
+    ecom_url = "http://%s:5988" % ecom_ip
 
     return pywbem.WBEMConnection(ecom_url, (ecom_user, ecom_pass),
                                  default_namespace="/root/emc")

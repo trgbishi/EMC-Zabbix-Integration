@@ -12,7 +12,7 @@ log_level = logging.INFO
 
 def ecom_connect(ecom_ip, ecom_user, ecom_pass, default_namespace="/root/emc"):
     """ returns a connection to the ecom server """
-    ecom_url = "https://%s:5989" % ecom_ip
+    ecom_url = "http://%s:5988" % ecom_ip
 
     logger = logging.getLogger('discovery')
     logger.info("Building WBEM Connection to %s" % ecom_url)
