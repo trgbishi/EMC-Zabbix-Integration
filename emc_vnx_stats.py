@@ -5,7 +5,7 @@ import csv
 import sys
 import argparse
 import pywbem
-import StringIO
+import io
 import subprocess
 import logging
 import logging.handlers
@@ -152,7 +152,7 @@ def process_stats(header_row, stat_output, array_serial, manifest_info,
     """ Pushes statistics out to Zabbix """
 
     sp_data = stat_output[stat_manifest_info[manifest_info]["ManifestID"]]
-    f = StringIO.StringIO(sp_data)
+    f = io.StringIO(sp_data)
     reader = csv.reader(f, delimiter=';')
 
     timestamp_index = header_row.index("StatisticTime")
@@ -186,10 +186,10 @@ def process_stats(header_row, stat_output, array_serial, manifest_info,
             zabbix_data.append("%s %s %s %s" % (array_serial, zabbix_key,
                                                 timestamp, row[i]))
             
-    print "------------------------------------------------------"
+    print("------------------------------------------------------")
     current_time = datetime.now().strftime("%c")
     stat_time = datetime.fromtimestamp(int(timestamp)).strftime("%c")
-    print "Current Time: %s    Stat Time: %s" % (current_time, stat_time)
+    print("Current Time: %s    Stat Time: %s" % (current_time, stat_time))
 
     # Check if we've already collected and sent this dataset
     last_stat = None
@@ -208,16 +208,16 @@ def process_stats(header_row, stat_output, array_serial, manifest_info,
         subprocess.call([sender_command, "-v", "-c", config_path,
                          "-s", array_serial, "-T", "-i", stat_file])
 
-        print "\n".join(zabbix_data)
-        print "\n"
+        print("\n".join(zabbix_data))
+        print("\n")
 
         with open(last_file, "w") as f:
             f.write(timestamp)
 
     else:
-        print "Already posted stats to Zabbix, skipping"
+        print("Already posted stats to Zabbix, skipping")
 
-    print "------------------------------------------------------\n"
+    print("------------------------------------------------------\n")
 
 
 def sp_stats_query(array_serial, ecom_ip, ecom_user="admin",
@@ -324,8 +324,8 @@ def pool_stats_query(array_serial, ecom_ip, ecom_user="admin",
     subprocess.call([sender_command, "-v", "-c", config_path,
                     "-s", array_serial, "-T", "-i", stat_file])
 
-    print "\n".join(zabbix_data)
-    print "\n"
+    print("\n".join(zabbix_data))
+    print("\n")
 
 
 def hardware_healthcheck(array_serial, ecom_ip, ecom_user="admin",
@@ -392,8 +392,8 @@ def hardware_healthcheck(array_serial, ecom_ip, ecom_user="admin",
     subprocess.call([sender_command, "-v", "-c", config_path,
                     "-s", array_serial, "-T", "-i", stat_file])
 
-    print "\n".join(zabbix_data)
-    print "\n"
+    print("\n".join(zabbix_data))
+    print("\n")
 
 
 def get_pool_io_stats(ecom_conn, array, disk_id_list, vol_id_list):
@@ -427,8 +427,8 @@ def get_pool_io_stats(ecom_conn, array, disk_id_list, vol_id_list):
             StatisticsFormat=pywbem.Uint16(2),
             ElementTypes=[pywbem.Uint16(8), pywbem.Uint16(10)])
 
-    disk_stat = StringIO.StringIO(cim_stats[1]["Statistics"][0])  # Disk stats
-    vol_stat = StringIO.StringIO(cim_stats[1]["Statistics"][1])  # Vol Stats
+    disk_stat = io.StringIO(cim_stats[1]["Statistics"][0])  # Disk stats
+    vol_stat = io.StringIO(cim_stats[1]["Statistics"][1])  # Vol Stats
 
     # The parameters we care about
     pool_stats = ["TotalIOs", "KBytesTransferred", "ReadIOs", "KBytesRead",
@@ -526,10 +526,10 @@ def pool_performance(req_pool, array_serial, ecom_ip,
                                                     timestamp,
                                                     str(stats["volumes"][i])))
 
-    print "------------------------------------------------------"
+    print("------------------------------------------------------")
     current_time = datetime.now().strftime("%c")
     stat_time = datetime.fromtimestamp(int(timestamp)).strftime("%c")
-    print "Current Time: %s    Stat Time: %s" % (current_time, stat_time)
+    print("Current Time: %s    Stat Time: %s" % (current_time, stat_time))
 
     # Check if we've already collected and sent this dataset
     last_stat = None
@@ -548,16 +548,16 @@ def pool_performance(req_pool, array_serial, ecom_ip,
         subprocess.call([sender_command, "-v", "-c", config_path,
                          "-s", array_serial, "-T", "-i", stat_file])
 
-        print "\n".join(zabbix_data)
-        print "\n"
+        print("\n".join(zabbix_data))
+        print("\n")
 
         with open(last_file, "w") as f:
             f.write(timestamp)
 
     else:
-        print "Already posted stats to Zabbix, skipping"
+        print("Already posted stats to Zabbix, skipping")
 
-    print "------------------------------------------------------\n"
+    print("------------------------------------------------------\n")
 
 def log_exception_handler(type, value, tb):
     logger = logging.getLogger('discovery')
@@ -620,16 +620,16 @@ def main():
     # Check for zabbix_sender and agentd files
     if not os.path.isfile(sender_command):
         logging.info("Unable to find sender command at: %s" % sender_command)
-        print ""
-        print "Unable to locate zabbix_sender command at: %s" % sender_command
-        print "Please update the script with the appropriate path"
+        print("")
+        print("Unable to locate zabbix_sender command at: %s" % sender_command)
+        print("Please update the script with the appropriate path")
         sys.exit()
 
     if not os.path.isfile(config_path):
         logging.info("Unable to find zabbix_agentd.conf at: %s" % config_path)
-        print ""
-        print "Unable to locate zabbix_agentd.conf file at: %s" % config_path
-        print "Please update the script with the appropriate path"
+        print("")
+        print("Unable to locate zabbix_agentd.conf file at: %s" % config_path)
+        print("Please update the script with the appropriate path")
         sys.exit()
 
     if args.disks:

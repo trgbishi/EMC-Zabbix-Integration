@@ -478,7 +478,7 @@ def main():
         logger.info("Array hardware discovery started")
         result = discover_array_devices(ecom_conn, args.serial)
 
-    print zabbix_safe_output(result)
+    print(zabbix_safe_output(result))
 
     logger.info("Discovery Complete")
 
