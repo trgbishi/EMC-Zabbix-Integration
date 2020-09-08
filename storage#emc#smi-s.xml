@@ -9,8 +9,8 @@
     </groups>
     <templates>
         <template>
-            <template>Template EMC VNX</template>
-            <name>Template EMC VNX</name>
+            <template>Storage EMC</template>
+            <name>Storage#EMC#SMI-S</name>
             <description/>
             <groups>
                 <group>
@@ -36,7 +36,7 @@
             </applications>
             <items>
                 <item>
-                    <name>Array Health Stats Collection</name>
+                    <name>storage.array.health.stats.collection</name>
                     <type>10</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -79,7 +79,7 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>Physical Disk Stats Collection</name>
+                    <name>storage.physical.disk.stats.collection</name>
                     <type>10</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -122,7 +122,7 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>Pool Stats Collection</name>
+                    <name>storage.pool.stats.collection</name>
                     <type>10</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -165,7 +165,7 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>Storage Processor Stats Collection</name>
+                    <name>storage.storage.processor.stats.collection</name>
                     <type>10</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -208,7 +208,7 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>Volume Stats Collection</name>
+                    <name>storage.volume.stats.collection</name>
                     <type>10</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -253,7 +253,7 @@
             </items>
             <discovery_rules>
                 <discovery_rule>
-                    <name>VNX Array Hardware</name>
+                    <name>vnx.array.hardware</name>
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
@@ -286,7 +286,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>{#DEVICENAME}</name>
+                            <name>storage.disk.status</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -331,7 +331,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template EMC VNX:emc.vnx.health.Status[{#DEVICEID}].iregexp(OK|OK ONLINE)}=0</expression>
+                            <expression>{Storage EMC:emc.vnx.health.Status[{#DEVICEID}].iregexp(OK|OK ONLINE)}=0</expression>
                             <name>{#DEVICENAME} Status</name>
                             <url/>
                             <status>0</status>
@@ -344,7 +344,7 @@
                     <host_prototypes/>
                 </discovery_rule>
                 <discovery_rule>
-                    <name>VNX Physical Disks</name>
+                    <name>vnx.physical.disks</name>
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
@@ -377,7 +377,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>{#DISKNAME} Busy Counter</name>
+                            <name>storage.disk.busy.counter</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -420,7 +420,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#DISKNAME} Idle Counter</name>
+                            <name>storage.disk.idle.counter</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -463,7 +463,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#DISKNAME} KB Read</name>
+                            <name>storage.disk.kb.read</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>1</multiplier>
@@ -506,7 +506,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#DISKNAME} KB Seeked</name>
+                            <name>storage.disk.kb.seeked</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -549,7 +549,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#DISKNAME} KB Transferred</name>
+                            <name>storage.disk.kb.transferred</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>1</multiplier>
@@ -592,7 +592,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#DISKNAME} KB Written</name>
+                            <name>storage.disk.kb.written</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>1</multiplier>
@@ -635,7 +635,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#DISKNAME} Percent Read</name>
+                            <name>storage.disk.percent.read</name>
                             <type>15</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -678,7 +678,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#DISKNAME} Queue Arrivals</name>
+                            <name>storage.disk.queue.arrivals</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -721,7 +721,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#DISKNAME} Queue Length</name>
+                            <name>storage.disk.queue.length</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -764,7 +764,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#DISKNAME} Read IO</name>
+                            <name>storage.disk.read.io</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -807,7 +807,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#DISKNAME} Total IO</name>
+                            <name>storage.disk.total.io</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -850,7 +850,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#DISKNAME} Utilization</name>
+                            <name>storage.disk.utilization</name>
                             <type>15</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -893,7 +893,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#DISKNAME} Write IO</name>
+                            <name>storage.disk.write.io</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -939,7 +939,7 @@
                     <trigger_prototypes/>
                     <graph_prototypes>
                         <graph_prototype>
-                            <name>{#DISKNAME} IOPs</name>
+                            <name>storage.disk.iops</name>
                             <width>900</width>
                             <height>200</height>
                             <yaxismin>0.0000</yaxismin>
@@ -964,7 +964,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template EMC VNX</host>
+                                        <host>Storage EMC</host>
                                         <key>emc.vnx.perf.ReadIOs[{#DISKPERFDEVICEID}]</key>
                                     </item>
                                 </graph_item>
@@ -976,7 +976,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template EMC VNX</host>
+                                        <host>Storage EMC</host>
                                         <key>emc.vnx.perf.WriteIOs[{#DISKPERFDEVICEID}]</key>
                                     </item>
                                 </graph_item>
@@ -986,7 +986,7 @@
                     <host_prototypes/>
                 </discovery_rule>
                 <discovery_rule>
-                    <name>VNX Pools</name>
+                    <name>vnx.pools</name>
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
@@ -1019,7 +1019,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>{#POOLNAME} - Collect Pool IO Stats</name>
+                            <name>storage.pool.collect.pool.io.stats</name>
                             <type>10</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -1062,7 +1062,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#POOLNAME} - Consumed Space</name>
+                            <name>storage.pool.consumed.space</name>
                             <type>15</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -1105,7 +1105,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#POOLNAME} - Disk - Read IO</name>
+                            <name>storage.pool.disk.read.io</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -1148,7 +1148,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#POOLNAME} - Disk - Total IO</name>
+                            <name>storage.pool.disk.total.io</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -1191,7 +1191,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#POOLNAME} - Disk - Total KB Read</name>
+                            <name>storage.pool.disk.total.kb.read</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>1</multiplier>
@@ -1234,7 +1234,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#POOLNAME} - Disk - Total KB Transferred</name>
+                            <name>storage.pool.disk.total.kb.transferred</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>1</multiplier>
@@ -1277,7 +1277,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#POOLNAME} - Disk - Total KB Written</name>
+                            <name>storage.pool.disk.total.kb.written</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>1</multiplier>
@@ -1320,7 +1320,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#POOLNAME} - Disk - Write IO</name>
+                            <name>storage.pool.disk.write.io</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -1363,7 +1363,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#POOLNAME} - FAST Cache Enabled</name>
+                            <name>storage.pool.fast.cache.enabled</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -1406,7 +1406,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#POOLNAME} - Percent Subscribed</name>
+                            <name>storage.pool.percent.subscribed</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -1449,7 +1449,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#POOLNAME} - Remaining Space</name>
+                            <name>storage.pool.remaining.space</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -1492,7 +1492,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#POOLNAME} - Subscribed Capacity</name>
+                            <name>storage.pool.subscribed.capacity</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -1535,7 +1535,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#POOLNAME} - Total Space</name>
+                            <name>storage.pool.total.space</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -1578,7 +1578,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#POOLNAME} - Volumes - Read IO</name>
+                            <name>storage.pool.volumes.read.io</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -1621,7 +1621,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#POOLNAME} - Volumes - Total IO</name>
+                            <name>storage.pool.volumes.total.io</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -1664,7 +1664,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#POOLNAME} - Volumes - Total KB Read</name>
+                            <name>storage.pool.volumes.total.kb.read</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>1</multiplier>
@@ -1707,7 +1707,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#POOLNAME} - Volumes - Total KB Transferred</name>
+                            <name>storage.pool.volumes.total.kb.transferred</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>1</multiplier>
@@ -1750,7 +1750,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#POOLNAME} - Volumes - Total KB Written</name>
+                            <name>storage.pool.volumes.total.kb.written</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>1</multiplier>
@@ -1793,7 +1793,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#POOLNAME} - Volumes - Write IO</name>
+                            <name>storage.pool.volumes.write.io</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -1839,7 +1839,7 @@
                     <trigger_prototypes/>
                     <graph_prototypes>
                         <graph_prototype>
-                            <name>Pool {#POOLNAME} Capacity</name>
+                            <name>storage.pool.capacity</name>
                             <width>900</width>
                             <height>200</height>
                             <yaxismin>0.0000</yaxismin>
@@ -1864,7 +1864,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template EMC VNX</host>
+                                        <host>Storage EMC</host>
                                         <key>emc.vnx.perf.TotalManagedSpace[{#POOLDEVICEID}]</key>
                                     </item>
                                 </graph_item>
@@ -1876,7 +1876,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template EMC VNX</host>
+                                        <host>Storage EMC</host>
                                         <key>emc.vnx.perf.EMCSubscribedCapacity[{#POOLDEVICEID}]</key>
                                     </item>
                                 </graph_item>
@@ -1888,7 +1888,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template EMC VNX</host>
+                                        <host>Storage EMC</host>
                                         <key>emc.vnx.perf.EMCPoolConsumed[{#POOLDEVICEID}]</key>
                                     </item>
                                 </graph_item>
@@ -1898,7 +1898,7 @@
                     <host_prototypes/>
                 </discovery_rule>
                 <discovery_rule>
-                    <name>VNX Storage Processors</name>
+                    <name>vnx.storage.processors</name>
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
@@ -1931,7 +1931,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>{#SPNAME} - % Utilization</name>
+                            <name>storage.sp.utilization</name>
                             <type>15</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -1974,7 +1974,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#SPNAME} - Availability</name>
+                            <name>storage.sp.availability</name>
                             <type>3</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -2017,7 +2017,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#SPNAME} - Busy Counter</name>
+                            <name>storage.sp.busy.counter</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -2060,7 +2060,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#SPNAME} - Cache - Dirty Page Count</name>
+                            <name>storage.sp.cache.dirty.page.count</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -2103,7 +2103,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#SPNAME} - Cache - High Watermark Flushes</name>
+                            <name>storage.sp.cache.high.watermark.flushes</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -2146,7 +2146,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#SPNAME} - Cache - Idle Flushes</name>
+                            <name>storage.sp.cache.idle.flushes</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -2189,7 +2189,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#SPNAME} - Cache - Low Watermark Flushes</name>
+                            <name>storage.sp.cache.low.watermark.flushes</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -2232,7 +2232,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#SPNAME} - Cache - Percent Dirty Pages</name>
+                            <name>storage.sp.cache.percent.dirty.pages</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -2275,7 +2275,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#SPNAME} - Cache - Write Flushes</name>
+                            <name>storage.sp.cache.write.flushes</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -2318,7 +2318,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#SPNAME} - Cache - Write KB Flushed</name>
+                            <name>storage.sp.cache.write.kb.flushed</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>1</multiplier>
@@ -2361,7 +2361,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#SPNAME} - Idle Counter</name>
+                            <name>storage.sp.idle.counter</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -2404,7 +2404,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#SPNAME} - IO Percent Read</name>
+                            <name>storage.sp.io.percent.read</name>
                             <type>15</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -2447,7 +2447,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#SPNAME} - KB Read</name>
+                            <name>storage.sp.kb.read</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>1</multiplier>
@@ -2490,7 +2490,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#SPNAME} - KB Transferred</name>
+                            <name>storage.sp.kb.transferred</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>1</multiplier>
@@ -2533,7 +2533,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#SPNAME} - KB Write</name>
+                            <name>storage.sp.kb.write</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>1</multiplier>
@@ -2576,7 +2576,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#SPNAME} - Queue Arrivals</name>
+                            <name>storage.sp.queue.arrivals</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -2619,7 +2619,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#SPNAME} - Queue Length</name>
+                            <name>storage.sp.queue.length</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -2662,7 +2662,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#SPNAME} - Read IO</name>
+                            <name>storage.sp.read.io</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -2705,7 +2705,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#SPNAME} - Total IO</name>
+                            <name>storage.sp.total.io</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -2748,7 +2748,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#SPNAME} - Write IO</name>
+                            <name>storage.sp.write.io</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -2794,7 +2794,7 @@
                     <trigger_prototypes/>
                     <graph_prototypes>
                         <graph_prototype>
-                            <name>{#SPNAME} - Dirty Page % vs. Writes Flushed</name>
+                            <name>storage.sp.dirty.page.vs.writes.flushed</name>
                             <width>500</width>
                             <height>200</height>
                             <yaxismin>0.0000</yaxismin>
@@ -2819,7 +2819,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template EMC VNX</host>
+                                        <host>Storage EMC</host>
                                         <key>emc.vnx.perf.EMCPctDirtyPages[{#SPPERFDEVICEID}]</key>
                                     </item>
                                 </graph_item>
@@ -2831,14 +2831,14 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template EMC VNX</host>
+                                        <host>Storage EMC</host>
                                         <key>emc.vnx.perf.EMCWriteFlushes[{#SPPERFDEVICEID}]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
                         </graph_prototype>
                         <graph_prototype>
-                            <name>{#SPNAME} - Percent Utilization</name>
+                            <name>storage.sp.percent.utilization</name>
                             <width>500</width>
                             <height>200</height>
                             <yaxismin>0.0000</yaxismin>
@@ -2863,14 +2863,14 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template EMC VNX</host>
+                                        <host>Storage EMC</host>
                                         <key>emc.vnx.perf.PercentUtilization[{#SPPERFDEVICEID}]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
                         </graph_prototype>
                         <graph_prototype>
-                            <name>{#SPNAME} - Read/Write IOPs</name>
+                            <name>storage.sp.read_write.iops</name>
                             <width>500</width>
                             <height>200</height>
                             <yaxismin>0.0000</yaxismin>
@@ -2895,7 +2895,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template EMC VNX</host>
+                                        <host>Storage EMC</host>
                                         <key>emc.vnx.perf.ReadIOs[{#SPPERFDEVICEID}]</key>
                                     </item>
                                 </graph_item>
@@ -2907,14 +2907,14 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template EMC VNX</host>
+                                        <host>Storage EMC</host>
                                         <key>emc.vnx.perf.WriteIOs[{#SPPERFDEVICEID}]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
                         </graph_prototype>
                         <graph_prototype>
-                            <name>{#SPNAME} - Read/Write KBps</name>
+                            <name>storage.sp.read_write.kbps</name>
                             <width>500</width>
                             <height>200</height>
                             <yaxismin>0.0000</yaxismin>
@@ -2939,7 +2939,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template EMC VNX</host>
+                                        <host>Storage EMC</host>
                                         <key>emc.vnx.perf.KBytesRead[{#SPPERFDEVICEID}]</key>
                                     </item>
                                 </graph_item>
@@ -2951,7 +2951,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template EMC VNX</host>
+                                        <host>Storage EMC</host>
                                         <key>emc.vnx.perf.KBytesWritten[{#SPPERFDEVICEID}]</key>
                                     </item>
                                 </graph_item>
@@ -2961,7 +2961,7 @@
                     <host_prototypes/>
                 </discovery_rule>
                 <discovery_rule>
-                    <name>VNX Volumes</name>
+                    <name>vnx.volumes</name>
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
@@ -2994,7 +2994,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>{#VOLDEVICEID} - {#VOLALIAS} - % Utilization</name>
+                            <name>storage.volumes.utilization</name>
                             <type>15</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -3037,7 +3037,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#VOLDEVICEID} - {#VOLALIAS} - Busy Counter</name>
+                            <name>storage.volumes.busy.counter</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -3080,7 +3080,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#VOLDEVICEID} - {#VOLALIAS} - Disk Crossings</name>
+                            <name>storage.volumes.disk.crossings</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -3123,7 +3123,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#VOLDEVICEID} - {#VOLALIAS} - EMC Sampled Read Time</name>
+                            <name>storage.volumes.emc.sampled.read.time</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -3166,7 +3166,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#VOLDEVICEID} - {#VOLALIAS} - EMC Sampled Write Time</name>
+                            <name>storage.volumes.emc.sampled.write.time</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -3209,7 +3209,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#VOLDEVICEID} - {#VOLALIAS} - FAST Cache Read Hits</name>
+                            <name>storage.volumes.fast.cache.read.hits</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -3252,7 +3252,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#VOLDEVICEID} - {#VOLALIAS} - FAST Cache Read Misses</name>
+                            <name>storage.volumes.fast.cache.read.misses</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -3295,7 +3295,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#VOLDEVICEID} - {#VOLALIAS} - FAST Cache Write Hits</name>
+                            <name>storage.volumes.fast.cache.write.hits</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -3338,7 +3338,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#VOLDEVICEID} - {#VOLALIAS} - FAST Cache Write Misses</name>
+                            <name>storage.volumes.fast.cache.write.misses</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -3381,7 +3381,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#VOLDEVICEID} - {#VOLALIAS} - Forced Flushes</name>
+                            <name>storage.volumes.forced.flushes</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -3424,7 +3424,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#VOLDEVICEID} - {#VOLALIAS} - Idle Counter</name>
+                            <name>storage.volumes.idle.counter</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -3467,7 +3467,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#VOLDEVICEID} - {#VOLALIAS} - KB Prefetched</name>
+                            <name>storage.volumes.kb.prefetched</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>1</multiplier>
@@ -3510,7 +3510,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#VOLDEVICEID} - {#VOLALIAS} - KB Prefetched Unused</name>
+                            <name>storage.volumes.kb.prefetched.unused</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>1</multiplier>
@@ -3553,7 +3553,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#VOLDEVICEID} - {#VOLALIAS} - KB Read</name>
+                            <name>storage.volumes.kb.read</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>1</multiplier>
@@ -3596,7 +3596,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#VOLDEVICEID} - {#VOLALIAS} - KB Transferred</name>
+                            <name>storage.volumes.kb.transferred</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>1</multiplier>
@@ -3639,7 +3639,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#VOLDEVICEID} - {#VOLALIAS} - KB Written</name>
+                            <name>storage.volumes.kb.written</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>1</multiplier>
@@ -3682,7 +3682,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#VOLDEVICEID} - {#VOLALIAS} - Queue Arrivals</name>
+                            <name>storage.volumes.queue.arrivals</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -3725,7 +3725,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#VOLDEVICEID} - {#VOLALIAS} - Queue Length</name>
+                            <name>storage.volumes.queue.length</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -3768,7 +3768,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#VOLDEVICEID} - {#VOLALIAS} - Read Hit IO</name>
+                            <name>storage.volumes.read.hit.io</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -3811,7 +3811,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#VOLDEVICEID} - {#VOLALIAS} - Read IO</name>
+                            <name>storage.volumes.read.io</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -3854,7 +3854,7 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#VOLDEVICEID} - {#VOLALIAS} - Read Response Time</name>
+                            <name>storage.volumes.read.response.time</name>
                             <type>15</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -3899,7 +3899,7 @@ Note:  EMC Sample times are given in Microseconds</description>
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#VOLDEVICEID} - {#VOLALIAS} - Total IO</name>
+                            <name>storage.volumes.total.io</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -3942,7 +3942,7 @@ Note:  EMC Sample times are given in Microseconds</description>
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#VOLDEVICEID} - {#VOLALIAS} - Write Hit IO</name>
+                            <name>storage.volumes.write.hit.io</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -3985,7 +3985,7 @@ Note:  EMC Sample times are given in Microseconds</description>
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#VOLDEVICEID} - {#VOLALIAS} - Write IO</name>
+                            <name>storage.volumes.write.io</name>
                             <type>2</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -4028,7 +4028,7 @@ Note:  EMC Sample times are given in Microseconds</description>
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
-                            <name>{#VOLDEVICEID} - {#VOLALIAS} - Write Response Time</name>
+                            <name>storage.volumes.write.response.time</name>
                             <type>15</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -4076,7 +4076,7 @@ Note:  EMC Sample times are given in Microseconds</description>
                     <trigger_prototypes/>
                     <graph_prototypes>
                         <graph_prototype>
-                            <name>{#VOLDEVICEID} - {#VOLALIAS} - IOPs</name>
+                            <name>storage.volumes.iops</name>
                             <width>900</width>
                             <height>200</height>
                             <yaxismin>0.0000</yaxismin>
@@ -4101,7 +4101,7 @@ Note:  EMC Sample times are given in Microseconds</description>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template EMC VNX</host>
+                                        <host>Storage EMC</host>
                                         <key>emc.vnx.perf.ReadIOs[{#VOLPERFDEVICEID}]</key>
                                     </item>
                                 </graph_item>
@@ -4113,7 +4113,7 @@ Note:  EMC Sample times are given in Microseconds</description>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template EMC VNX</host>
+                                        <host>Storage EMC</host>
                                         <key>emc.vnx.perf.WriteIOs[{#VOLPERFDEVICEID}]</key>
                                     </item>
                                 </graph_item>
@@ -4144,7 +4144,7 @@ Note:  EMC Sample times are given in Microseconds</description>
             <templates/>
             <screens>
                 <screen>
-                    <name>Storage Processors Statistics</name>
+                    <name>storage.processors.statistics</name>
                     <hsize>2</hsize>
                     <vsize>4</vsize>
                     <screen_items>
@@ -4164,8 +4164,8 @@ Note:  EMC Sample times are given in Microseconds</description>
                             <dynamic>0</dynamic>
                             <sort_triggers>0</sort_triggers>
                             <resource>
-                                <name>{#SPNAME} - Percent Utilization</name>
-                                <host>Template EMC VNX</host>
+                                <name>storage.sp.percent.utilization</name>
+                                <host>Storage EMC</host>
                             </resource>
                             <max_columns>2</max_columns>
                             <application/>
@@ -4186,8 +4186,8 @@ Note:  EMC Sample times are given in Microseconds</description>
                             <dynamic>0</dynamic>
                             <sort_triggers>0</sort_triggers>
                             <resource>
-                                <name>{#SPNAME} - Read/Write IOPs</name>
-                                <host>Template EMC VNX</host>
+                                <name>storage.sp.read_write.iops</name>
+                                <host>Storage EMC</host>
                             </resource>
                             <max_columns>2</max_columns>
                             <application/>
@@ -4208,8 +4208,8 @@ Note:  EMC Sample times are given in Microseconds</description>
                             <dynamic>0</dynamic>
                             <sort_triggers>0</sort_triggers>
                             <resource>
-                                <name>{#SPNAME} - Read/Write KBps</name>
-                                <host>Template EMC VNX</host>
+                                <name>storage.sp.read_write.kbps</name>
+                                <host>Storage EMC</host>
                             </resource>
                             <max_columns>3</max_columns>
                             <application/>
@@ -4230,8 +4230,8 @@ Note:  EMC Sample times are given in Microseconds</description>
                             <dynamic>0</dynamic>
                             <sort_triggers>0</sort_triggers>
                             <resource>
-                                <name>{#SPNAME} - Dirty Page % vs. Writes Flushed</name>
-                                <host>Template EMC VNX</host>
+                                <name>storage.sp.dirty.page.vs.writes.flushed</name>
+                                <host>Storage EMC</host>
                             </resource>
                             <max_columns>3</max_columns>
                             <application/>
