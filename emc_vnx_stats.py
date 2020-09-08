@@ -147,7 +147,7 @@ def get_stats(array_serial, ecom_ip, instance_id, ecom_user="admin",
     return (header_row, stat_output[1]["Statistics"])
 
 
-def process_stats(header_row, stat_output, array_serial, manifest_info,
+def process_stats(zabbix_host, header_row, stat_output, array_serial, manifest_info,
                   ignore_fields=[]):
     """ Pushes statistics out to Zabbix """
 
@@ -183,13 +183,13 @@ def process_stats(header_row, stat_output, array_serial, manifest_info,
             elif row[i] == "18446744073709551615":   # If the data is N/A
                 continue
             zabbix_key = "emc.vnx.perf.%s[%s]" % (header_row[i], perf_dev_id)
-            zabbix_data.append("%s %s %s %s" % (array_serial, zabbix_key,
+            zabbix_data.append("%s %s %s %s" % (zabbix_host, zabbix_key,
                                                 timestamp, row[i]))
-            
-    print("------------------------------------------------------")
+    logger = logging.getLogger('discovery')
+    logger.info("------------------------------------------------------")
     current_time = datetime.now().strftime("%c")
     stat_time = datetime.fromtimestamp(int(timestamp)).strftime("%c")
-    print("Current Time: %s    Stat Time: %s" % (current_time, stat_time))
+    logger.info("Current Time: %s    Stat Time: %s" % (current_time, stat_time))
 
     # Check if we've already collected and sent this dataset
     last_stat = None
@@ -206,21 +206,21 @@ def process_stats(header_row, stat_output, array_serial, manifest_info,
             f.write("\n".join(zabbix_data))
 
         subprocess.call([sender_command, "-v", "-c", config_path,
-                         "-s", array_serial, "-T", "-i", stat_file])
+                         "-s", zabbix_host, "-T", "-i", stat_file])
 
-        print("\n".join(zabbix_data))
-        print("\n")
+        logger.info("\n".join(zabbix_data))
+        logger.info("\n")
 
         with open(last_file, "w") as f:
             f.write(timestamp)
 
     else:
-        print("Already posted stats to Zabbix, skipping")
+        logger.info("Already posted stats to Zabbix, skipping")
 
-    print("------------------------------------------------------\n")
+    logger.info("------------------------------------------------------\n")
 
 
-def sp_stats_query(array_serial, ecom_ip, ecom_user="admin",
+def sp_stats_query(zabbix_host, array_serial, ecom_ip, ecom_user="admin",
                    ecom_pass="#1Password"):
 
     InstanceID = stat_manifest_info["SP"]["InstanceID"]
@@ -228,10 +228,10 @@ def sp_stats_query(array_serial, ecom_ip, ecom_user="admin",
     header_row, stat_output = get_stats(array_serial, ecom_ip, InstanceID,
                                         ecom_user, ecom_pass)
 
-    process_stats(header_row, stat_output, array_serial, "SP")
+    process_stats(zabbix_host, header_row, stat_output, array_serial, "SP")
 
 
-def volume_stats_query(array_serial, ecom_ip, ecom_user="admin",
+def volume_stats_query(zabbix_host, array_serial, ecom_ip, ecom_user="admin",
                        ecom_pass="#1Password"):
 
     InstanceID = stat_manifest_info["Volumes"]["InstanceID"]
@@ -260,12 +260,12 @@ def volume_stats_query(array_serial, ecom_ip, ecom_user="admin",
                    "EMCReadHistogram", "EMCReadHistogramOverflows",
                    "EMCWriteHistogram", "EMCWriteHistogramOverflows"]
 
-    process_stats(header_row, stat_output, array_serial, "Volumes",
+    process_stats(zabbix_host, header_row, stat_output, array_serial, "Volumes",
                   skip_fields)
 
     # Calculate our response times
 
-def disk_stats_query(array_serial, ecom_ip, ecom_user="admin",
+def disk_stats_query(zabbix_host, array_serial, ecom_ip, ecom_user="admin",
                      ecom_pass="#1Password"):
 
     InstanceID = stat_manifest_info["Disks"]["InstanceID"]
@@ -276,10 +276,10 @@ def disk_stats_query(array_serial, ecom_ip, ecom_user="admin",
     skip_fields = ["EMCSpinUPS", "EMCCurrentPWRSavingLogTimeStamp",
                    "EMCSpinningCounter", "EMCStandbyCounter"]
 
-    process_stats(header_row, stat_output, array_serial, "Disks", skip_fields)
+    process_stats(zabbix_host, header_row, stat_output, array_serial, "Disks", skip_fields)
 
 
-def pool_stats_query(array_serial, ecom_ip, ecom_user="admin",
+def pool_stats_query(zabbix_host, array_serial, ecom_ip, ecom_user="admin",
                      ecom_pass="#1Password"):
 
     ecom_conn = ecom_connect(ecom_ip, ecom_user, ecom_pass)
@@ -309,7 +309,7 @@ def pool_stats_query(array_serial, ecom_ip, ecom_user="admin",
                 try:
                     zabbix_key = "emc.vnx.perf.%s[%s]" % (
                         stat, i["InstanceID"].replace(" ", "_"))
-                    zabbix_data.append("%s %s %s %s" % (array_serial,
+                    zabbix_data.append("%s %s %s %s" % (zabbix_host,
                                                         zabbix_key,
                                                         timestamp,
                                                         i[stat]))
@@ -322,13 +322,14 @@ def pool_stats_query(array_serial, ecom_ip, ecom_user="admin",
         f.write("\n".join(zabbix_data))
 
     subprocess.call([sender_command, "-v", "-c", config_path,
-                    "-s", array_serial, "-T", "-i", stat_file])
+                    "-s", zabbix_host, "-T", "-i", stat_file])
+    logger = logging.getLogger('discovery')
 
-    print("\n".join(zabbix_data))
-    print("\n")
+    logger.info("\n".join(zabbix_data))
+    logger.info("\n")
 
 
-def hardware_healthcheck(array_serial, ecom_ip, ecom_user="admin",
+def hardware_healthcheck(zabbix_host, array_serial, ecom_ip, ecom_user="admin",
                          ecom_pass="#1Password"):
 
     ecom_conn = ecom_connect(ecom_ip, ecom_user, ecom_pass)
@@ -362,7 +363,7 @@ def hardware_healthcheck(array_serial, ecom_ip, ecom_user="admin",
                 device_id = inst["DeviceID"]
 
             zabbix_key = "emc.vnx.health.Status[%s]" % device_id
-            zabbix_data.append("%s %s %s %s" % (array_serial, zabbix_key,
+            zabbix_data.append("%s %s %s %s" % (zabbix_host, zabbix_key,
                                                 timestamp, status))
 
     # For enclosures we need to locate the ArrayChassis
@@ -381,7 +382,7 @@ def hardware_healthcheck(array_serial, ecom_ip, ecom_user="admin",
         status = " ".join(inst["StatusDescriptions"])
         device_id = inst["Tag"]
         zabbix_key = "emc.vnx.health.Status[%s]" % device_id
-        zabbix_data.append("%s %s %s %s" % (array_serial, zabbix_key,
+        zabbix_data.append("%s %s %s %s" % (zabbix_host, zabbix_key,
                                             timestamp, status))
 
     stat_file = "/tmp/health_data.tmp"
@@ -390,10 +391,11 @@ def hardware_healthcheck(array_serial, ecom_ip, ecom_user="admin",
         f.write("\n".join(zabbix_data))
 
     subprocess.call([sender_command, "-v", "-c", config_path,
-                    "-s", array_serial, "-T", "-i", stat_file])
+                    "-s", zabbix_host, "-T", "-i", stat_file])
 
-    print("\n".join(zabbix_data))
-    print("\n")
+    logger = logging.getLogger('discovery')
+    logger.info("\n".join(zabbix_data))
+    logger.info("\n")
 
 
 def get_pool_io_stats(ecom_conn, array, disk_id_list, vol_id_list):
@@ -474,7 +476,7 @@ def get_pool_io_stats(ecom_conn, array, disk_id_list, vol_id_list):
     return results
 
 
-def pool_performance(req_pool, array_serial, ecom_ip,
+def pool_performance(zabbix_host, req_pool, array_serial, ecom_ip,
                      ecom_user="admin", ecom_pass="#1Password"):
 
     array_pool = req_pool.replace("_", " ")
@@ -516,20 +518,21 @@ def pool_performance(req_pool, array_serial, ecom_ip,
             timestamp = stats["timestamp"]
             for i in stats["disks"].keys():
                 zabbix_key = "emc.vnx.perf.PoolDisk%s[%s]" % (i, req_pool)
-                zabbix_data.append("%s %s %s %s" % (array_serial, zabbix_key,
+                zabbix_data.append("%s %s %s %s" % (zabbix_host, zabbix_key,
                                                     timestamp,
                                                     str(stats["disks"][i])))
 
             for i in stats["volumes"].keys():
                 zabbix_key = "emc.vnx.perf.PoolVol%s[%s]" % (i, req_pool)
-                zabbix_data.append("%s %s %s %s" % (array_serial, zabbix_key,
+                zabbix_data.append("%s %s %s %s" % (zabbix_host, zabbix_key,
                                                     timestamp,
                                                     str(stats["volumes"][i])))
 
-    print("------------------------------------------------------")
+    logger = logging.getLogger('discovery')
+    logger.info("------------------------------------------------------")
     current_time = datetime.now().strftime("%c")
     stat_time = datetime.fromtimestamp(int(timestamp)).strftime("%c")
-    print("Current Time: %s    Stat Time: %s" % (current_time, stat_time))
+    logger.info("Current Time: %s    Stat Time: %s" % (current_time, stat_time))
 
     # Check if we've already collected and sent this dataset
     last_stat = None
@@ -546,18 +549,18 @@ def pool_performance(req_pool, array_serial, ecom_ip,
             f.write("\n".join(zabbix_data))
 
         subprocess.call([sender_command, "-v", "-c", config_path,
-                         "-s", array_serial, "-T", "-i", stat_file])
+                         "-s", zabbix_host, "-T", "-i", stat_file])
 
-        print("\n".join(zabbix_data))
-        print("\n")
+        logger.info("\n".join(zabbix_data))
+        logger.info("\n")
 
         with open(last_file, "w") as f:
             f.write(timestamp)
 
     else:
-        print("Already posted stats to Zabbix, skipping")
+        logger.info("Already posted stats to Zabbix, skipping")
 
-    print("------------------------------------------------------\n")
+    logger.info("------------------------------------------------------\n")
 
 def log_exception_handler(type, value, tb):
     logger = logging.getLogger('discovery')
@@ -599,6 +602,8 @@ def main():
                         help="ECOM Username", default="admin")
     parser.add_argument('--ecom_pass', action="store",
                         help="ECOM Password", default="#1Password")
+    parser.add_argument('--zabbix_host', action="store",
+                        help="zabbix server name", required=True)
 
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument('--disks', '-d', action="store_true",
@@ -619,40 +624,40 @@ def main():
 
     # Check for zabbix_sender and agentd files
     if not os.path.isfile(sender_command):
-        logging.info("Unable to find sender command at: %s" % sender_command)
-        print("")
-        print("Unable to locate zabbix_sender command at: %s" % sender_command)
-        print("Please update the script with the appropriate path")
+        logger.info("Unable to find sender command at: %s" % sender_command)
+        logger.info("")
+        logger.info("Unable to locate zabbix_sender command at: %s" % sender_command)
+        logger.info("Please update the script with the appropriate path")
         sys.exit()
 
     if not os.path.isfile(config_path):
-        logging.info("Unable to find zabbix_agentd.conf at: %s" % config_path)
-        print("")
-        print("Unable to locate zabbix_agentd.conf file at: %s" % config_path)
-        print("Please update the script with the appropriate path")
+        logger.info("Unable to find zabbix_agentd.conf at: %s" % config_path)
+        logger.info("")
+        logger.info("Unable to locate zabbix_agentd.conf file at: %s" % config_path)
+        logger.info("Please update the script with the appropriate path")
         sys.exit()
 
     if args.disks:
-        disk_stats_query(args.serial, args.ecom_ip,
+        disk_stats_query(args.zabbix_host, args.serial, args.ecom_ip,
                          args.ecom_user, args.ecom_pass)
         sys.exit()
     elif args.volumes:
-        volume_stats_query(args.serial, args.ecom_ip,
+        volume_stats_query(args.zabbix_host, args.serial, args.ecom_ip,
                            args.ecom_user, args.ecom_pass)
         sys.exit()
     elif args.procs:
-        sp_stats_query(args.serial, args.ecom_ip,
+        sp_stats_query(args.zabbix_host, args.serial, args.ecom_ip,
                        args.ecom_user, args.ecom_pass)
         sys.exit()
     elif args.pools:
-        pool_stats_query(args.serial, args.ecom_ip,
+        pool_stats_query(args.zabbix_host, args.serial, args.ecom_ip,
                          args.ecom_user, args.ecom_pass)
         sys.exit()
     elif args.array:
-        hardware_healthcheck(args.serial, args.ecom_ip,
+        hardware_healthcheck(args.zabbix_host, args.serial, args.ecom_ip,
                              args.ecom_user, args.ecom_pass)
     elif args.poolperf:
-        pool_performance(args.poolperf, args.serial, args.ecom_ip,
+        pool_performance(args.zabbix_host, args.poolperf, args.serial, args.ecom_ip,
                          args.ecom_user, args.ecom_pass)
         sys.exit()
 

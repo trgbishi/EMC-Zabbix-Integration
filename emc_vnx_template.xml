@@ -41,7 +41,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>emc_vnx_stats.py[&quot;--serial&quot;,{$VNX_SERIAL_NO},&quot;--ecom_ip&quot;,{$ECOMIP},&quot;--ecom_user&quot;,{$ECOMUSER},&quot;--ecom_pass&quot;,{$ECOMPASS},&quot;--array&quot;]</key>
+                    <key>emc_vnx_stats.py[&quot;--zabbix_host&quot;,{HOST.HOST},&quot;--serial&quot;,{$VNX_SERIAL_NO},&quot;--ecom_ip&quot;,{$ECOMIP},&quot;--ecom_user&quot;,{$ECOMUSER},&quot;--ecom_pass&quot;,{$ECOMPASS},&quot;--array&quot;]</key>
                     <delay>60</delay>
                     <history>2</history>
                     <trends>365</trends>
@@ -84,7 +84,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>emc_vnx_stats.py[&quot;--serial&quot;,{$VNX_SERIAL_NO},&quot;--ecom_ip&quot;,{$ECOMIP},&quot;--ecom_user&quot;,{$ECOMUSER},&quot;--ecom_pass&quot;,{$ECOMPASS},&quot;--disks&quot;]</key>
+                    <key>emc_vnx_stats.py[&quot;--zabbix_host&quot;,{HOST.HOST},&quot;--serial&quot;,{$VNX_SERIAL_NO},&quot;--ecom_ip&quot;,{$ECOMIP},&quot;--ecom_user&quot;,{$ECOMUSER},&quot;--ecom_pass&quot;,{$ECOMPASS},&quot;--disks&quot;]</key>
                     <delay>60</delay>
                     <history>2</history>
                     <trends>365</trends>
@@ -127,7 +127,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>emc_vnx_stats.py[&quot;--serial&quot;,{$VNX_SERIAL_NO},&quot;--ecom_ip&quot;,{$ECOMIP},&quot;--ecom_user&quot;,{$ECOMUSER},&quot;--ecom_pass&quot;,{$ECOMPASS},&quot;--pools&quot;]</key>
+                    <key>emc_vnx_stats.py[&quot;--zabbix_host&quot;,{HOST.HOST},&quot;--serial&quot;,{$VNX_SERIAL_NO},&quot;--ecom_ip&quot;,{$ECOMIP},&quot;--ecom_user&quot;,{$ECOMUSER},&quot;--ecom_pass&quot;,{$ECOMPASS},&quot;--pools&quot;]</key>
                     <delay>60</delay>
                     <history>2</history>
                     <trends>365</trends>
@@ -170,7 +170,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>emc_vnx_stats.py[&quot;--serial&quot;,{$VNX_SERIAL_NO},&quot;--ecom_ip&quot;,{$ECOMIP},&quot;--ecom_user&quot;,{$ECOMUSER},&quot;--ecom_pass&quot;,{$ECOMPASS},&quot;--procs&quot;]</key>
+                    <key>emc_vnx_stats.py[&quot;--zabbix_host&quot;,{HOST.HOST},&quot;--serial&quot;,{$VNX_SERIAL_NO},&quot;--ecom_ip&quot;,{$ECOMIP},&quot;--ecom_user&quot;,{$ECOMUSER},&quot;--ecom_pass&quot;,{$ECOMPASS},&quot;--procs&quot;]</key>
                     <delay>60</delay>
                     <history>2</history>
                     <trends>365</trends>
@@ -213,7 +213,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>emc_vnx_stats.py[&quot;--serial&quot;,{$VNX_SERIAL_NO},&quot;--ecom_ip&quot;,{$ECOMIP},&quot;--ecom_user&quot;,{$ECOMUSER},&quot;--ecom_pass&quot;,{$ECOMPASS},&quot;--volumes&quot;]</key>
+                    <key>emc_vnx_stats.py[&quot;--zabbix_host&quot;,{HOST.HOST},&quot;--serial&quot;,{$VNX_SERIAL_NO},&quot;--ecom_ip&quot;,{$ECOMIP},&quot;--ecom_user&quot;,{$ECOMUSER},&quot;--ecom_pass&quot;,{$ECOMPASS},&quot;--volumes&quot;]</key>
                     <delay>60</delay>
                     <history>2</history>
                     <trends>365</trends>
@@ -1024,7 +1024,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>emc_vnx_stats.py[&quot;--serial&quot;,{$VNX_SERIAL_NO},&quot;--ecom_ip&quot;,{$ECOMIP},&quot;--ecom_user&quot;,{$ECOMUSER},&quot;--ecom_pass&quot;,{$ECOMPASS},&quot;--poolperf&quot;,&quot;{#POOLDEVICEID}&quot;]</key>
+                            <key>emc_vnx_stats.py[&quot;--zabbix_host&quot;,{HOST.HOST},&quot;--serial&quot;,{$VNX_SERIAL_NO},&quot;--ecom_ip&quot;,{$ECOMIP},&quot;--ecom_user&quot;,{$ECOMUSER},&quot;--ecom_pass&quot;,{$ECOMPASS},&quot;--poolperf&quot;,&quot;{#POOLDEVICEID}&quot;]</key>
                             <delay>60</delay>
                             <history>2</history>
                             <trends>365</trends>
