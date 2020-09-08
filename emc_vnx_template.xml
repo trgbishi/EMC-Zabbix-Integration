@@ -41,7 +41,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>emc_vnx_stats.py[&quot;--serial&quot;,{HOST.HOST},&quot;--ecom_ip&quot;,{$ECOMIP},&quot;--ecom_user&quot;,{$ECOMUSER},&quot;--ecom_pass&quot;,{$ECOMPASS},&quot;--array&quot;]</key>
+                    <key>emc_vnx_stats.py[&quot;--serial&quot;,{$VNX_SERIAL_NO},&quot;--ecom_ip&quot;,{$ECOMIP},&quot;--ecom_user&quot;,{$ECOMUSER},&quot;--ecom_pass&quot;,{$ECOMPASS},&quot;--array&quot;]</key>
                     <delay>60</delay>
                     <history>2</history>
                     <trends>365</trends>
@@ -84,7 +84,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>emc_vnx_stats.py[&quot;--serial&quot;,{HOST.HOST},&quot;--ecom_ip&quot;,{$ECOMIP},&quot;--ecom_user&quot;,{$ECOMUSER},&quot;--ecom_pass&quot;,{$ECOMPASS},&quot;--disks&quot;]</key>
+                    <key>emc_vnx_stats.py[&quot;--serial&quot;,{$VNX_SERIAL_NO},&quot;--ecom_ip&quot;,{$ECOMIP},&quot;--ecom_user&quot;,{$ECOMUSER},&quot;--ecom_pass&quot;,{$ECOMPASS},&quot;--disks&quot;]</key>
                     <delay>60</delay>
                     <history>2</history>
                     <trends>365</trends>
@@ -127,7 +127,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>emc_vnx_stats.py[&quot;--serial&quot;,{HOST.HOST},&quot;--ecom_ip&quot;,{$ECOMIP},&quot;--ecom_user&quot;,{$ECOMUSER},&quot;--ecom_pass&quot;,{$ECOMPASS},&quot;--pools&quot;]</key>
+                    <key>emc_vnx_stats.py[&quot;--serial&quot;,{$VNX_SERIAL_NO},&quot;--ecom_ip&quot;,{$ECOMIP},&quot;--ecom_user&quot;,{$ECOMUSER},&quot;--ecom_pass&quot;,{$ECOMPASS},&quot;--pools&quot;]</key>
                     <delay>60</delay>
                     <history>2</history>
                     <trends>365</trends>
@@ -170,7 +170,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>emc_vnx_stats.py[&quot;--serial&quot;,{HOST.HOST},&quot;--ecom_ip&quot;,{$ECOMIP},&quot;--ecom_user&quot;,{$ECOMUSER},&quot;--ecom_pass&quot;,{$ECOMPASS},&quot;--procs&quot;]</key>
+                    <key>emc_vnx_stats.py[&quot;--serial&quot;,{$VNX_SERIAL_NO},&quot;--ecom_ip&quot;,{$ECOMIP},&quot;--ecom_user&quot;,{$ECOMUSER},&quot;--ecom_pass&quot;,{$ECOMPASS},&quot;--procs&quot;]</key>
                     <delay>60</delay>
                     <history>2</history>
                     <trends>365</trends>
@@ -213,7 +213,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>emc_vnx_stats.py[&quot;--serial&quot;,{HOST.HOST},&quot;--ecom_ip&quot;,{$ECOMIP},&quot;--ecom_user&quot;,{$ECOMUSER},&quot;--ecom_pass&quot;,{$ECOMPASS},&quot;--volumes&quot;]</key>
+                    <key>emc_vnx_stats.py[&quot;--serial&quot;,{$VNX_SERIAL_NO},&quot;--ecom_ip&quot;,{$ECOMIP},&quot;--ecom_user&quot;,{$ECOMUSER},&quot;--ecom_pass&quot;,{$ECOMPASS},&quot;--volumes&quot;]</key>
                     <delay>60</delay>
                     <history>2</history>
                     <trends>365</trends>
@@ -257,7 +257,7 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>emc_vnx_discovery.py[&quot;--ecom_ip={$ECOMIP}&quot;,&quot;--ecom_user={$ECOMUSER}&quot;,&quot;--ecom_pass={$ECOMPASS}&quot;,&quot;--serial={HOST.HOST}&quot;,&quot;--array&quot;]</key>
+                    <key>emc_vnx_discovery.py[&quot;--ecom_ip={$ECOMIP}&quot;,&quot;--ecom_user={$ECOMUSER}&quot;,&quot;--ecom_pass={$ECOMPASS}&quot;,&quot;--serial={$VNX_SERIAL_NO}&quot;,&quot;--array&quot;]</key>
                     <delay>60</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -348,7 +348,7 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>emc_vnx_discovery.py[&quot;--ecom_ip={$ECOMIP}&quot;,&quot;--ecom_user={$ECOMUSER}&quot;,&quot;--ecom_pass={$ECOMPASS}&quot;,&quot;--serial={HOST.HOST}&quot;,&quot;--disks&quot;]</key>
+                    <key>emc_vnx_discovery.py[&quot;--ecom_ip={$ECOMIP}&quot;,&quot;--ecom_user={$ECOMUSER}&quot;,&quot;--ecom_pass={$ECOMPASS}&quot;,&quot;--serial={$VNX_SERIAL_NO}&quot;,&quot;--disks&quot;]</key>
                     <delay>60</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -990,7 +990,7 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>emc_vnx_discovery.py[&quot;--ecom_ip={$ECOMIP}&quot;,&quot;--ecom_user={$ECOMUSER}&quot;,&quot;--ecom_pass={$ECOMPASS}&quot;,&quot;--serial={HOST.HOST}&quot;,&quot;--pools&quot;]</key>
+                    <key>emc_vnx_discovery.py[&quot;--ecom_ip={$ECOMIP}&quot;,&quot;--ecom_user={$ECOMUSER}&quot;,&quot;--ecom_pass={$ECOMPASS}&quot;,&quot;--serial={$VNX_SERIAL_NO}&quot;,&quot;--pools&quot;]</key>
                     <delay>60</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -1024,7 +1024,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>emc_vnx_stats.py[&quot;--serial&quot;,{HOST.HOST},&quot;--ecom_ip&quot;,{$ECOMIP},&quot;--ecom_user&quot;,{$ECOMUSER},&quot;--ecom_pass&quot;,{$ECOMPASS},&quot;--poolperf&quot;,&quot;{#POOLDEVICEID}&quot;]</key>
+                            <key>emc_vnx_stats.py[&quot;--serial&quot;,{$VNX_SERIAL_NO},&quot;--ecom_ip&quot;,{$ECOMIP},&quot;--ecom_user&quot;,{$ECOMUSER},&quot;--ecom_pass&quot;,{$ECOMPASS},&quot;--poolperf&quot;,&quot;{#POOLDEVICEID}&quot;]</key>
                             <delay>60</delay>
                             <history>2</history>
                             <trends>365</trends>
@@ -1902,7 +1902,7 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>emc_vnx_discovery.py[&quot;--ecom_ip={$ECOMIP}&quot;,&quot;--ecom_user={$ECOMUSER}&quot;,&quot;--ecom_pass={$ECOMPASS}&quot;,&quot;--serial={HOST.HOST}&quot;,&quot;--procs&quot;]</key>
+                    <key>emc_vnx_discovery.py[&quot;--ecom_ip={$ECOMIP}&quot;,&quot;--ecom_user={$ECOMUSER}&quot;,&quot;--ecom_pass={$ECOMPASS}&quot;,&quot;--serial={$VNX_SERIAL_NO}&quot;,&quot;--procs&quot;]</key>
                     <delay>60</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -2965,7 +2965,7 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>emc_vnx_discovery.py[&quot;--ecom_ip={$ECOMIP}&quot;,&quot;--ecom_user={$ECOMUSER}&quot;,&quot;--ecom_pass={$ECOMPASS}&quot;,&quot;--serial={HOST.HOST}&quot;,&quot;--volumes&quot;]</key>
+                    <key>emc_vnx_discovery.py[&quot;--ecom_ip={$ECOMIP}&quot;,&quot;--ecom_user={$ECOMUSER}&quot;,&quot;--ecom_pass={$ECOMPASS}&quot;,&quot;--serial={$VNX_SERIAL_NO}&quot;,&quot;--volumes&quot;]</key>
                     <delay>60</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -4123,7 +4123,24 @@ Note:  EMC Sample times are given in Microseconds</description>
                     <host_prototypes/>
                 </discovery_rule>
             </discovery_rules>
-            <macros/>
+            <macros>
+                <macro>
+                    <macro>{$ECOMIP}</macro>
+                    <value/>
+                </macro>
+                <macro>
+                    <macro>{$ECOMPASS}</macro>
+                    <value>#1Password</value>
+                </macro>
+                <macro>
+                    <macro>{$ECOMUSER}</macro>
+                    <value>admin</value>
+                </macro>
+                <macro>
+                    <macro>{$VNX_SERIAL_NO}</macro>
+                    <value/>
+                </macro>
+            </macros>
             <templates/>
             <screens>
                 <screen>
